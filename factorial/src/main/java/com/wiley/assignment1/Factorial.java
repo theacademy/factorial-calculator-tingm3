@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 
 public class Factorial {
-	
-	 private Scanner scanner;
-	 private PrintStream printStream;
-	 private int num;
-	 
 
-	 public Factorial(InputStream inputStream, PrintStream printStream) {
-	      this.scanner = new Scanner(inputStream);
-	      this.printStream = printStream;
-	 }
-	 
-	 public int isInputNumberValid()  {
+    private Scanner scanner;
+    private PrintStream printStream;
+    private int num;
+
+
+    public Factorial(InputStream inputStream, PrintStream printStream) {
+        this.scanner = new Scanner(inputStream);
+        this.printStream = printStream;
+    }
+
+    public int isInputNumberValid() {
 		 
 		/*
 		- Update this method to accept a number from the user and store the value in an instance variable `num`. 
@@ -33,66 +33,68 @@ public class Factorial {
 		- All code should be inside the placeholders below.
 		*/
 
-		//YOUR CODE STARTS HERE
-		Scanner sc = new Scanner(System.in);
-		int input = sc.nextInt();
-		if(input <= 0 || input >10){
-			this.printStream.print("Invalid entry. Please enter an integer between 1 and 10, inclusive.");
-			return  -1;
-		}
-		this.num = input;
-		return this.num;
+        //YOUR CODE STARTS HERE
+        if (this.scanner.hasNextInt()) {
+            int input = this.scanner.nextInt();
+            if (input >= 1 && input <= 10) {
+                this.num = input;
+                return input;
+            }
+        } else if (this.scanner.hasNext()) {
+            this.scanner.next();
+        }
+        this.printStream.print("Invalid entry. Please enter an integer between 1 and 10, inclusive.");
+        return -1;
 
-		//YOUR CODE ENDS HERE
-		 
-			
-	 }
-	
-	 
-	 private void calculateFactorial(int num) {
+        //YOUR CODE ENDS HERE
+
+
+    }
+
+
+    private void calculateFactorial(int num) {
 		
 		  /*
 		  Use this method to calculate the factorial of the number input by the user.
 		  
 		  - All code should be inside the placeholders below.
 		*/
-		 
-		int result = 1;
-		//YOUR CODE STARTS HERE
-		int i = 2;
-		while (i<= this.num){
-			result *= i;
-			i++;
-		}
- 
 
-		//YOUR CODE ENDS HERE
-		this.printStream.print("The Factorial is: " + result);		
-		
-	 }
-	 
-	 public void calculateFactorial() {
+        int result = 1;
+        //YOUR CODE STARTS HERE
+        int i = 2;
+        while (i <= this.num) {
+            result *= i;
+            i++;
+        }
+
+
+        //YOUR CODE ENDS HERE
+        this.printStream.print("The Factorial is: " + result);
+
+    }
+
+    public void calculateFactorial() {
 		 /*
 		 Do not change this method.
 		 */
-		 	
-		 int input = this.isInputNumberValid();
-		 if(input != -1)
-		 {
-			 calculateFactorial(input);
-		 }
-		 
-	 }
-	
 
-	 public static void main(String[] args) { 
+        int input = this.isInputNumberValid();
+        if (input != -1) {
+            calculateFactorial(input);
+        }
+
+    }
+
+
+    public static void main(String[] args) {
 		/*
 		 Do not change this method.
 		 */
-		Factorial fact = new Factorial(System.in,System.out);
-		System.out.println("Enter an integer between 1 and 10, inclusive.");
-		fact.calculateFactorial();	
-	 }
+        Factorial fact = new Factorial(System.in, System.out);
+        System.out.println("Enter an integer between 1 and 10, inclusive.");
+        fact.calculateFactorial();
+    }
 
-	
+
 }
